@@ -10,47 +10,30 @@
       </nav>
     </header>
 
-    <div class="slider-stack">
-      <!-- Top track (carousel2 images) -->
-      <div class="slider reverse">
-        <div class="slide-track reverse-track">
-          <template v-for="n in 200">
-            <div v-for="(img, idx) in carousel2" :key="`top-${n}-${idx}`" class="slide">
-              <img :src="img" height="100" width="250" alt="" />
-            </div>
-          </template>
-        </div>
-      </div>
-      <!-- Middle track (carousel1 images) -->
-      <div class="slider">
+    <div class="slider-multiline">
+      <div
+        class="slider"
+        :class="{ reverse: row === 1 || row === 3 }"
+        v-for="row in 3"
+        :key="row"
+      >
         <div class="slide-track">
-          <template v-for="n in 200">
-            <div
-              v-for="(img, idx) in carousel1"
-              :key="`mid-${n}-${idx}`"
-              class="slide"
-            >
-              <img :src="img" height="100" width="250" alt="" />
-            </div>
-          </template>
+          <div
+            class="slide"
+            v-for="(img, idx) in carouselImages"
+            :key="row + '-' + idx"
+          >
+            <img :src="img" height="100" width="250" alt="" />
+          </div>
+          <!-- Duplicate images for seamless looping -->
+          <div
+            class="slide"
+            v-for="(img, idx) in carouselImages"
+            :key="row + '-dup-' + idx"
+          >
+            <img :src="img" height="100" width="250" alt="" />
+          </div>
         </div>
-      </div>
-      <!-- Bottom track (carousel3 images) -->
-      <div class="slider reverse">
-        <div class="slide-track reverse-track">
-          <template v-for="n in 200">
-            <div v-for="(img, idx) in carousel3" :key="`bot-${n}-${idx}`" class="slide">
-              <img :src="img" height="100" width="250" alt="" />
-            </div>
-          </template>
-        </div>
-      </div>
-      <!-- Transparent card overlay -->
-      <div class="overlay-card">
-        <h2>Welcome to My Portfolio</h2>
-        <p>
-          Explore my artwork below. For commissions or inquiries, use the navigation above!
-        </p>
       </div>
     </div>
   </div>
@@ -60,13 +43,13 @@
 function importAll(r) {
   return r.keys().map(r);
 }
+
 export default {
   name: 'ArtPortfolio',
   data() {
     return {
-      carousel1: importAll(require.context('@/assets/carousel1', false, /\.(png|jpe?g|svg)$/)),
-      carousel2: importAll(require.context('@/assets/carousel2', false, /\.(png|jpe?g|svg)$/)),
-      carousel3: importAll(require.context('@/assets/carousel3', false, /\.(png|jpe?g|svg)$/)),
+      carouselImages: importAll(require.context('@/assets/carousel1', false, /\.(png|jpe?g|svg|webp)$/)),
+      imageWidth: 120 // Not used in template, but kept for reference
     };
   }
 };
@@ -76,18 +59,16 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 .portfolio {
+  min-height: 100vh;
   height: 100vh;
-  width: 100vw;
-  padding: 0;
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: white;
   background: linear-gradient(-45deg, #CCD2FF, #EFD7FF, #FFDEFC, #C9B7EA);
   background-size: 400% 400%;
   animation: gradientFlow 5s ease infinite;
-  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  color: white;
   display: flex;
   flex-direction: column;
+  min-width: 100vw;
 }
 
 @keyframes gradientFlow {
@@ -118,104 +99,103 @@ nav {
   gap: 20px;
 }
 
-/* Stack 3 sliders vertically, fill available space, and add gap between them */
-.slider-stack {
+body {
+  align-items: center;
+  background: #E3E3E3;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-274px * 7)); /* 250px image + 24px gap */
+  }
+}
+
+@keyframes scroll-reverse {
+  0% {
+    transform: translateX(calc(-274px * 7));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slider-multiline {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch;
-  gap: 32px; /* Add gap between sliders */
-  height: calc(100vh - 100px);
-  min-height: 0;
-  padding: 32px 0; /* Optional: vertical padding for nicer spacing */
-  position: relative; /* Needed for overlay positioning */
+  justify-content: center;
+  gap: 24px;           /* Equal gap between all slider rows */
+  margin: 0;
+  padding: 24px 0;     /* Equal gap at the top and bottom */
 }
 
 .slider {
   background: transparent;
-  height: 33.33%;
-  width: 100vw;
-  max-width: 100vw;
-  margin: 0;
+  flex: 1 1 0;
+  margin: 0 auto;
   overflow: hidden;
   position: relative;
+  width: 100vw;
+  min-height: 0;
+  height: 33.33vh; /* Each slider row is 1/3 of viewport height */
   display: flex;
   align-items: center;
 }
 
-.slide-track,
-.reverse-track {
+.slider::before,
+.slider::after {
+  content: "";
+  height: 100px;
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+}
+
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+
+.slider::before {
+  left: 0;
+  top: 0;
+}
+
+.slider .slide-track {
+  animation: scroll 40s linear infinite;
   display: flex;
+  width: calc((250px + 24px) * 14);
   gap: 24px;
-  width: auto;
+  align-items: center;
 }
 
-.slide-track {
-  animation: scroll 30s linear infinite;
-}
-.reverse-track {
-  animation: scroll-reverse 30s linear infinite;
+.slider.reverse .slide-track {
+  animation: scroll-reverse 40s linear infinite;
 }
 
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-1894px); }
-}
-@keyframes scroll-reverse {
-  0% { transform: translateX(-1894px); }
-  100% { transform: translateX(0); }
-}
-
-.slide {
-  display: flex;
-}
-
-.slide img {
+.slider .slide {
   height: 100%;
   width: 250px;
-  object-fit: cover;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider .slide img {
   display: block;
-  border: 4px solid #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  background: #f6f6fa;
-  transition: box-shadow 0.2s;
-}
-
-.slide img:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-  border-color: #b7aaff;
-}
-
-/* Transparent overlay card */
-.overlay-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 320px;
-  max-width: 90vw;
-  background: rgba(30, 30, 40, 0.55);
-  color: #fff;
-  border-radius: 22px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  padding: 36px 48px;
-  text-align: center;
-  z-index: 10;
-  backdrop-filter: blur(4px);
-  pointer-events: auto;
-}
-
-.overlay-card h2 {
-  margin: 0 0 16px 0;
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.overlay-card p {
-  margin: 0;
-  font-size: 1.15rem;
-  opacity: 0.92;
+  width: 250px;
+  height: 30%;
+  object-fit: cover;
+  background: transparent;
+  border-radius: 8px;
 }
 </style>
