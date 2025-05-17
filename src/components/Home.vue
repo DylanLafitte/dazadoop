@@ -6,11 +6,12 @@
         <router-link to="/">Home</router-link>
         <router-link to="/portfolio">Portfolio</router-link>
         <router-link to="/commissions">Commissions</router-link>
+        <router-link to="/faq">FAQ</router-link>
         <router-link to="/contact">Contact</router-link>
       </nav>
     </header>
 
-    <div class="slider-multiline">
+    <div class="slider-multiline" ref="sliders">
       <div
         class="slider"
         :class="{ reverse: row === 1 || row === 3 }"
@@ -35,6 +36,25 @@
           </div>
         </div>
       </div>
+      <!-- Info Card Overlay, centered relative to sliders -->
+      <div class="info-card-centered">
+        <h2>Commission Custom Art from Dazadoop!</h2>
+        <p>
+          Bring your ideas to life with unique, hand-crafted illustrations and character designs.<br>
+          <strong>What I offer:</strong>
+        </p>
+        <ul>
+          <li>✨ Character design (original or fanart)</li>
+          <li>🎨 Portraits, busts, and full-body artworks</li>
+          <li>🌈 Whimsical, colorful, and expressive styles</li>
+          <li>🖼️ Digital delivery in high resolution</li>
+        </ul>
+        <p style="margin-top: 18px;">
+          <strong>How to commission:</strong><br>
+          Click the button below or use the navigation above to visit the commissions page for pricing, process, and to get started!
+        </p>
+        <router-link class="commission-btn" to="/commissions">Request a Commission</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -49,7 +69,6 @@ export default {
   data() {
     return {
       carouselImages: importAll(require.context('@/assets/carousel1', false, /\.(png|jpe?g|svg|webp)$/)),
-      imageWidth: 120 // Not used in template, but kept for reference
     };
   }
 };
@@ -69,6 +88,101 @@ export default {
   display: flex;
   flex-direction: column;
   min-width: 100vw;
+  position: relative;
+}
+
+.slider-multiline {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+  padding: 24px 0;
+  position: relative; /* Needed for absolute centering of info card */
+}
+
+.info-card-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(30, 30, 40, 0.75);
+  color: #fff;
+  border-radius: 22px;
+  padding: 44px 54px 36px 54px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+  text-align: center;
+  z-index: 10;
+  max-width: 95vw;
+  min-width: 320px;
+  border: 3px solid #FFDDEE;
+  backdrop-filter: blur(6px);
+  pointer-events: auto;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.info-card-centered h2 {
+  margin-bottom: 18px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #FFDDEE;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+.info-card-centered p {
+  font-size: 1.18rem;
+  opacity: 0.96;
+  margin-bottom: 10px;
+}
+
+.info-card-centered ul {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0 0;
+  font-size: 1.08rem;
+  text-align: left;
+  display: inline-block;
+  color: #fff;
+}
+
+.info-card-centered ul li {
+  margin: 0 0 8px 0;
+  padding-left: 0.5em;
+  position: relative;
+}
+
+.info-card-centered ul li::before {
+  content: "•";
+  color: #FFDDEE;
+  font-size: 1.2em;
+  position: absolute;
+  left: -1em;
+  top: 0;
+}
+
+.commission-btn {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 14px 36px;
+  background: linear-gradient(90deg, #FFDDEE 0%, #C9B7EA 100%);
+  color: #2c2c3e;
+  font-weight: 700;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(200, 100, 200, 0.13);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+.commission-btn:hover {
+  background: linear-gradient(90deg, #C9B7EA 0%, #FFDDEE 100%);
+  color: #1a1a2a;
+  transform: scale(1.06);
+  box-shadow: 0 8px 32px rgba(200, 100, 200, 0.18);
 }
 
 @keyframes gradientFlow {
@@ -113,7 +227,7 @@ body {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-274px * 7)); /* 250px image + 24px gap */
+    transform: translateX(calc(-274px * 7));
   }
 }
 
@@ -126,16 +240,6 @@ body {
   }
 }
 
-.slider-multiline {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 24px;           /* Equal gap between all slider rows */
-  margin: 0;
-  padding: 24px 0;     /* Equal gap at the top and bottom */
-}
-
 .slider {
   background: transparent;
   flex: 1 1 0;
@@ -144,7 +248,7 @@ body {
   position: relative;
   width: 100vw;
   min-height: 0;
-  height: 33.33vh; /* Each slider row is 1/3 of viewport height */
+  height: 33.33vh;
   display: flex;
   align-items: center;
 }
