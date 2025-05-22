@@ -126,6 +126,16 @@ export default {
   overflow: hidden;
 }
 
+/* Keep the hover effect for the card background and border */
+.info-card-centered:hover {
+  background: rgba(40, 30, 60, 0.98);
+  border-color: #C9B7EA;
+  box-shadow:
+    0 16px 48px 0 rgba(200, 100, 200, 0.28),
+    0 4px 16px 0 rgba(0,0,0,0.22),
+    0 0 0 12px rgba(255, 221, 238, 0.18);
+}
+
 .info-card-centered h2,
 .info-card-centered p,
 .info-card-centered ul {
