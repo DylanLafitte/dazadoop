@@ -28,13 +28,19 @@
       <div class="info-card-centered">
         <h2>Commission Custom Art from Dazadoop!</h2>
         <p>
-          Bring your ideas to life with unique, hand-crafted illustrations and character designs.<br>
+          Hey, thanks for taking interest in commissioning me!<br>
+          Below you'll find the form you need to fill out to get a quote, as well as my Terms of Service.<br>
+          <strong>Please read through my ToS before filling out the form.</strong><br>
+          Please answer each question so I can give you an accurate quote~
+        </p>
+        <p>
           <strong>What I offer:</strong>
         </p>
         <ul>
-          <li>✨ Character design (original or fanart)</li>
+          <li>✨ Sketches, coloured sketches, flat colours, and full colours</li>
+          <li>👥 Extra characters, backgrounds, and alternate versions available</li>
           <li>🎨 Portraits, busts, and full-body artworks</li>
-          <li>🌈 Colourful, and expressive styles</li>
+          <li>🌈 Colourful, expressive styles</li>
           <li>🖼️ Digital delivery in high resolution</li>
         </ul>
         <p style="margin-top: 18px;">
@@ -95,71 +101,101 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(30, 30, 40, 0.92); /* More opaque for pop */
+  background: rgba(30, 30, 40, 0.92);
   color: #fff;
-  border-radius: 28px;
-  padding: 54px 64px 44px 64px;
+  border-radius: 2vw;
+  padding: 2vw 2vw 1.5vw 2vw; /* Reduce padding */
   box-shadow:
-    0 8px 32px 0 rgba(200, 100, 200, 0.18),
-    0 2px 8px 0 rgba(0,0,0,0.18),
-    0 0 0 8px rgba(255, 221, 238, 0.12); /* Glow border effect */
+    0 0.6vw 2vw 0 rgba(200, 100, 200, 0.18),
+    0 0.15vw 0.6vw 0 rgba(0,0,0,0.18),
+    0 0 0 0.6vw rgba(255, 221, 238, 0.12);
   text-align: center;
   z-index: 10;
-  max-width: 95vw;
-  min-width: 320px;
-  border: 4px solid #FFDDEE;
-  backdrop-filter: blur(8px);
+  max-width: 98vw;             /* Allow even more width */
+  min-width: 320px;          /* Slightly wider minimum for comfort */
+  border: 0.3vw solid #FFDDEE;
+  backdrop-filter: blur(0.6vw);
   pointer-events: auto;
   transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
+  font-size: 0.85vw;           /* Slightly smaller text */
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Make text shrink to fit if needed */
+  overflow: hidden;
 }
 
-.info-card-centered:hover {
-  box-shadow:
-    0 16px 48px 0 rgba(200, 100, 200, 0.28),
-    0 4px 16px 0 rgba(0,0,0,0.22),
-    0 0 0 12px rgba(255, 221, 238, 0.18);
-  border-color: #C9B7EA;
-  background: rgba(40, 30, 60, 0.98);
+.info-card-centered h2,
+.info-card-centered p,
+.info-card-centered ul {
+  /* Allow text to shrink if needed */
+  min-width: 0;
+  min-height: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.info-card-centered p,
+.info-card-centered ul {
+  /* Responsive font size for content */
+  font-size: clamp(0.7em, 0.85vw, 0.95em); /* Smaller content text */
+  margin-bottom: 0.5em;                    /* Less margin between blocks */
+  line-height: 1.18;
 }
 
 .info-card-centered h2 {
-  margin-bottom: 18px;
-  font-size: 2.2rem;
+  font-size: clamp(0.9em, 1.2vw, 1.5em); /* Smaller heading */
+  margin-bottom: 0.7em;                  /* Less margin below heading */
   font-weight: 700;
   letter-spacing: 1.5px;
   color: #FFDDEE;
   text-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 
+@media (max-width: 700px) {
+  .info-card-centered {
+    font-size: 1rem;
+    padding: 24px 4vw 18px 4vw;
+    border-radius: 18px;
+    max-width: 98vw;
+    height: auto;
+  }
+  .info-card-centered h2 {
+    font-size: 1.3em;
+  }
+  .info-card-centered p,
+  .info-card-centered ul {
+    font-size: 1em;
+  }
+}
+
 .info-card-centered p {
-  font-size: 1.18rem;
+  font-size: 1.1em;
   opacity: 0.96;
   margin-bottom: 10px;
 }
 
 .info-card-centered ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    /* Center the bullet points horizontally */
   list-style: none;
   padding: 0;
-  margin: 18px 0 0 0;
-  font-size: 1.08rem;
-  text-align: left;
-  display: inline-block;
-  color: #fff;
+  margin: 10px 0 0 0;
+  font-size: 1em;
+  text-align: left;       /* Keep text left-aligned within each li */
+  width: 100%;
 }
 
 .info-card-centered ul li {
+  display: block;
   margin: 0 0 8px 0;
   padding-left: 0.5em;
   position: relative;
-}
-
-.info-card-centered ul li::before {
-  content: "•";
-  color: #FFDDEE;
-  font-size: 1.2em;
-  position: absolute;
-  left: -1em;
-  top: 0;
+  font-size: 1em;
+  text-align: left;
+  min-width: 220px;
 }
 
 .commission-btn {
