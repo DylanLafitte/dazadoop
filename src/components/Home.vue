@@ -1,16 +1,4 @@
 <template>
-  <div class="portfolio">
-    <header class="app-header">
-      <div class="logo">Art by [Dazadoop]</div>
-      <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/portfolio">Portfolio</router-link>
-        <router-link to="/commissions">Commissions</router-link>
-        <router-link to="/faq">FAQ</router-link>
-        <router-link to="/contact">Contact</router-link>
-      </nav>
-    </header>
-
     <div class="slider-multiline" ref="sliders">
       <div
         class="slider"
@@ -46,7 +34,7 @@
         <ul>
           <li>✨ Character design (original or fanart)</li>
           <li>🎨 Portraits, busts, and full-body artworks</li>
-          <li>🌈 Whimsical, colorful, and expressive styles</li>
+          <li>🌈 Colourful, and expressive styles</li>
           <li>🖼️ Digital delivery in high resolution</li>
         </ul>
         <p style="margin-top: 18px;">
@@ -56,7 +44,6 @@
         <router-link class="commission-btn" to="/commissions">Request a Commission</router-link>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -108,19 +95,31 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(30, 30, 40, 0.75);
+  background: rgba(30, 30, 40, 0.92); /* More opaque for pop */
   color: #fff;
-  border-radius: 22px;
-  padding: 44px 54px 36px 54px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+  border-radius: 28px;
+  padding: 54px 64px 44px 64px;
+  box-shadow:
+    0 8px 32px 0 rgba(200, 100, 200, 0.18),
+    0 2px 8px 0 rgba(0,0,0,0.18),
+    0 0 0 8px rgba(255, 221, 238, 0.12); /* Glow border effect */
   text-align: center;
   z-index: 10;
   max-width: 95vw;
   min-width: 320px;
-  border: 3px solid #FFDDEE;
-  backdrop-filter: blur(6px);
+  border: 4px solid #FFDDEE;
+  backdrop-filter: blur(8px);
   pointer-events: auto;
-  transition: box-shadow 0.2s, border-color 0.2s;
+  transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.info-card-centered:hover {
+  box-shadow:
+    0 16px 48px 0 rgba(200, 100, 200, 0.28),
+    0 4px 16px 0 rgba(0,0,0,0.22),
+    0 0 0 12px rgba(255, 221, 238, 0.18);
+  border-color: #C9B7EA;
+  background: rgba(40, 30, 60, 0.98);
 }
 
 .info-card-centered h2 {
@@ -185,66 +184,12 @@ export default {
   box-shadow: 0 8px 32px rgba(200, 100, 200, 0.18);
 }
 
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.app-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 15px;
-  height: 100px;
-}
-
-.logo {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-}
-
-body {
-  align-items: center;
-  background: #E3E3E3;
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-274px * 7));
-  }
-}
-
-@keyframes scroll-reverse {
-  0% {
-    transform: translateX(calc(-274px * 7));
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 .slider {
   background: transparent;
   flex: 1 1 0;
   margin: 0 auto;
-  overflow: hidden;
+  /* Only the slider allows overflow for shadows */
+  overflow: visible;
   position: relative;
   width: 100vw;
   min-height: 0;
@@ -301,5 +246,77 @@ body {
   object-fit: cover;
   background: transparent;
   border-radius: 8px;
+  /* Add a nice border */
+  border: 3px solid #FFDDEE;
+  box-shadow: 0 8px 32px 0 rgba(200, 100, 200, 0.18), 0 2px 8px 0 rgba(0,0,0,0.18);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.slider .slide img:hover {
+  border-color: #C9B7EA;
+  box-shadow: 0 16px 48px 0 rgba(200, 100, 200, 0.28), 0 4px 16px 0 rgba(0,0,0,0.22);
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.app-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  height: 100px;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+body {
+  align-items: center;
+  background: #E3E3E3;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+}
+
+html, body, #app, .portfolio {
+  overflow: hidden !important;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-274px * 7));
+  }
+}
+
+@keyframes scroll-reverse {
+  0% {
+    transform: translateX(calc(-274px * 7));
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>
