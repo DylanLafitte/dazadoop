@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../components/Home.vue'
 import About from '../components/About.vue'
 import PortfolioPage from '../pages/PortfolioPage.vue'
@@ -10,11 +10,11 @@ const routes = [
   { path: '/about', component: About },
   { path: '/portfolio', component: PortfolioPage },
   { path: '/commissions', component: CommissionsPage },
-  { path: '/contact', component: ContactPage }
+  { path: '/contact', component: ContactPage },
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory('/dazadoop/'),
   routes
 })
 

@@ -3,10 +3,10 @@
     <header class="app-header">
       <h1 class="logo">ArtAAAAAA by [Dazadoop]</h1>
       <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/portfolio">Portfolio</router-link>
-        <router-link to="/commissions">Commissions</router-link>
-        <router-link to="/contact">Contact</router-link>
+        <router-link to="/dazadoop/">Home</router-link>
+        <router-link to="/dazadoop/portfolio">Portfolio</router-link>
+        <router-link to="/dazadoop/commissions">Commissions</router-link>
+        <router-link to="/dazadoop/contact">Contact</router-link>
       </nav>
     </header>
 

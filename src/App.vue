@@ -4,9 +4,9 @@
       <div class="logo">Art by [Dazadoop]</div>
       <nav>
         <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+        <router-link to="/portfolio">Portfolio</router-link>
         <router-link to="/commissions">Commissions</router-link>
-        <router-link to="/about-me">About Me</router-link>
-        <router-link to="/faq">FAQ</router-link>
         <router-link to="/contact">Contact</router-link>
       </nav>
     </header>
