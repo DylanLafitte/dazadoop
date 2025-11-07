@@ -1,29 +1,54 @@
 <template>
   <div class="carousel-wrap">
     <BackgroundCarousel />
-    <div class="info-card-centered">
-      <h1>Commission Custom Art from Dazadoop!</h1>
-      <p>
-        Hey, thanks for taking interest in commissioning me!<br>
-        Below you'll find the form you need to fill out to get a quote, as well as my Terms of Service.<br>
-        <strong><router-link class="tos-link" to="/tos">Please read through my ToS before filling out the form.</router-link></strong><br>
-        Please answer each question so I can give you an accurate quote~
-      </p>
-      <p>
-        <strong>What I offer:</strong>
-      </p>
-      <ul>
-        <li>✨ Sketches, coloured sketches, flat colours, and full colours</li>
-        <li>👥 Extra characters, backgrounds, and alternate versions available</li>
-        <li>🎨 Portraits, busts, and full-body artworks</li>
-        <li>🌈 Colourful, expressive styles</li>
-        <li>🖼️ Digital delivery in high resolution</li>
-      </ul>
-      <p style="margin-top: 18px;">
-        <strong>How to commission:</strong><br />
-        Click the button below or use the navigation above to visit the commissions page for pricing, process, and to get started!
-      </p>
-      <router-link class="commission-btn" to="/commissions">Request a Commission</router-link>
+    <div class="info-card-centered" role="article" aria-labelledby="tos-title">
+      <h1 style="text-align: center; margin: 8px;" id="tos-title">Commission Terms of Service 📜</h1>
+
+      <div class="tos-content">
+        <section>
+          <h2>✅ Acceptance & Refunds</h2>
+          <ul>
+            <li>🔒 I reserve the right to accept or decline any commission.</li>
+            <li>💸 Commissions are non-refundable once paid. <em>Refunds MAY be issued under special circumstances.</em></li>
+            <li>📧 The final full-resolution file will be emailed to you after completion.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>🧾 Content</h2>
+          <ul>
+            <li>✅ SFW and NSFW accepted — humans, anthro, and feral characters welcome.</li>
+            <li><strong>🚫 Not accepted:</strong> underage characters, vore, watersports/scat, or similar prohibited fetishes.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>💳 Payment</h2>
+          <ul>
+            <li>💱 Prices are listed in USD.</li>
+            <li>📦 I accept payment via PayPal only.</li>
+            <li>🕒 Payment in full must be received before work begins.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>⚙️ Process</h2>
+          <ul>
+            <li>✏️ You will receive 2 WIPs: (1) rough pose/layout sketch, (2) a more detailed sketch reflecting the final piece.</li>
+            <li>✔️ Sketches must be approved before work continues. Changes allowed during sketching; after final sketch approval additional changes require extra fees.</li>
+            <li>🔎 WIPs may be requested at any time. Turnaround varies; I cannot rush commissions currently.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>©️ Copyright & Usage</h2>
+          <ul>
+            <li>🖼️ I retain the artist's rights and may use commissioned art to promote/display publicly.</li>
+            <li>👤 The commissioner may use purchased art for personal use (social media, prints, icons, banners) with proper credit to the artist.</li>
+            <li>🔐 Private commissions: +50% fee. Commercial use available for an additional fee of 300% of the commission price.</li>
+          </ul>
+        </section>
+      </div>
     </div>
   </div>
 </template>
@@ -51,9 +76,11 @@ export default {
   --card-gap: 24px;
   --card-width: 250px;
   --card-border: 6px;
+
   --accent-light: #FFDDEE;   
   --accent-mid:   #C9B7EA;   
   --accent-contrast: #E6C2F6;
+
   --card-border-gradient: linear-gradient(90deg, var(--accent-light) 0%, var(--accent-contrast) 55%, var(--accent-mid) 100%);
 }
 
@@ -64,7 +91,6 @@ export default {
 .card {
   flex: 0 0 var(--card-width);
   display: flex;
-  align-items: center;
   justify-content: center;
   width: var(--card-width);
   height: 100%;
@@ -73,7 +99,7 @@ export default {
   box-sizing: border-box;
   overflow: hidden;
   background: transparent;
-  padding: 6px; 
+  padding: 6px;
 
   border: var(--card-border) solid transparent;
   border-image: var(--card-border-gradient) 1;
@@ -108,12 +134,11 @@ export default {
   background: rgba(30, 30, 40, 0.92);
   color: #fff;
   border-radius: 2vw;
-  padding: 1vw 2vw 1.5vw 2vw;
+  padding: 1vw 2vw 1vw 2vw;
   box-shadow:
     0 0.6vw 2vw 0 rgba(200, 100, 200, 0.18),
     0 0.15vw 0.6vw 0 rgba(0,0,0,0.18),
     0 0 0 0.6vw rgba(255, 221, 238, 0.12);
-  text-align: center;
   z-index: 10;
   max-width: 98vw;
   min-width: 320px;
@@ -121,8 +146,9 @@ export default {
   backdrop-filter: blur(0.6vw);
   pointer-events: auto;
   transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
-  font-size: 1rem;
-  width: 50vw;
+  font-size: 0.7rem;
+  max-height: 80vh;
+  width: 55vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -150,13 +176,12 @@ export default {
 .info-card-centered p,
 .info-card-centered ul {
   font-size: clamp(0.7em, 0.85vw, 0.95em);
-  margin-bottom: 0.5em;                   
+  margin-bottom: 0.5rem;                  
   line-height: 1.18;
 }
 
 .info-card-centered h2 {
-  font-size: clamp(0.9em, 1.2vw, 1.5em);
-  margin-bottom: 0.7em;                
+  font-size: clamp(0.9em, 1.2vw, 1.5em); 
   font-weight: 700;
   letter-spacing: 1.5px;
   color: #FFDDEE;
@@ -166,7 +191,6 @@ export default {
 @media (max-width: 700px) {
   .info-card-centered {
     font-size: 1rem;
-    padding: 24px 4vw 18px 4vw;
     border-radius: 18px;
     max-width: 98vw;
     height: auto;
@@ -189,12 +213,11 @@ export default {
 .info-card-centered ul {
   display: flex;
   flex-direction: column;
-  align-items: center;    
   list-style: none;
   padding: 0;
   margin: 10px 0 0 0;
-  font-size: 1em;
-  text-align: left;       
+  font-size: 0.95rem;
+  text-align: left;      
   width: 100%;
 }
 
@@ -208,17 +231,54 @@ export default {
   min-width: 220px;
 }
 
-.info-card-centered .tos-link {
-  color: #FFDDEE;
-  font-weight: 800;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+.tos-content {
+  padding: 8px 32px;
+  overflow: auto;
+  height: 100%;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,221,238,0.9) rgba(255,255,255,0.03);
 }
 
-.info-card-centered .tos-link:hover {
-  color: #FFF6FB;
-  transform: translateY(-1px);
+.tos-content::-webkit-scrollbar { 
+  width: 12px; 
+}
+
+.tos-content::-webkit-scrollbar-track { 
+  background: transparent;
+  border-radius: 8px;
+}
+
+.tos-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255,221,238,0.95), rgba(201,183,234,0.95));
+  border-radius: 10px;
+  border: 2px solid rgba(0,0,0,0.12);
+}
+
+.tos-content::before,
+.tos-content::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 32px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.tos-content::before {
+  top: 0;
+  background: linear-gradient(180deg, rgba(22,20,28,0.92), rgba(22,20,28,0));
+}
+
+.tos-content::after {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(22,20,28,0.92), rgba(22,20,28,0));
+}
+
+.tos-content > * {
+  position: relative;
+  z-index: 6;
 }
 
 .commission-btn {

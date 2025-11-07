@@ -5,8 +5,9 @@
       <nav>
         <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
-        <router-link to="/portfolio">Portfolio</router-link>
         <router-link to="/commissions">Commissions</router-link>
+        <router-link to="/tos">TOS</router-link>
+
         <router-link to="/contact">Contact</router-link>
       </nav>
     </header>
@@ -80,7 +81,7 @@ body {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 15px;
-  height: 100px;
+  height: 50px;
 }
 
 .logo {
@@ -95,7 +96,6 @@ nav {
   gap: 20px;
 }
 
-/* Style all router-links inside nav */
 nav > .router-link-active,
 nav > .router-link-exact-active,
 nav > a.router-link-active,
@@ -105,7 +105,7 @@ nav > a.router-link-exact-active {
   font-weight: 700;
   border-radius: 10px;
   box-shadow: 0 4px 18px rgba(200, 100, 200, 0.13);
-  padding: 10px 24px;
+  padding: 10px 12px;
   text-decoration: none;
   transition: background 0.2s, color 0.2s, transform 0.15s;
 }
@@ -116,7 +116,7 @@ nav > .router-link-exact-active {
   color: #fff;
   font-weight: 600;
   font-size: 1.08rem;
-  padding: 10px 24px; /* Make padding same as active for all states */
+  padding: 10px 12px;
   border-radius: 10px;
   text-decoration: none;
   transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
@@ -124,8 +124,20 @@ nav > .router-link-exact-active {
   box-shadow: none;
   position: relative;
   outline: none;
-  /* Prevent shift by reserving space for border if you add one */
   box-sizing: border-box;
+
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none;   
+  -khtml-user-select: none;
+  -moz-user-select: none;     
+  -ms-user-select: none;     
+  user-select: none;          
+}
+
+nav > a,
+nav > .router-link-active,
+nav > .router-link-exact-active {
+  cursor: pointer;
 }
 
 nav > a:hover,
