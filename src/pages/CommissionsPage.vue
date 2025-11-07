@@ -1,18 +1,44 @@
 <template>
   <div class="carousel-wrap">
     <BackgroundCarousel />
-    <div class="info-card-centered" role="article" aria-labelledby="commissions-title">
-      <form class="commission-card" @submit.prevent="submitForm" novalidate>
-        <header class="form-header" :class="{ scrolled: bodyScrolled }" aria-hidden="false">
+
+    <div v-if="submitted"  class="info-card-centered confirmation-card" style="height: 20vh">
+      <header class="form-header">
+        <h2>Request sent ✅</h2>
+      </header>
+      <div class="form-body">
+        <p>Thanks! ~ your request has been submitted. You'll receive a confirmation email shortly and I will be in contact as soon as possible!</p>
+      </div>
+    </div>
+    <div  v-else class="info-card-centered" role="article" aria-labelledby="commissions-title">
+      <!-- Show confirmation card if submitted -->
+
+      <!-- Show form if not submitted -->
+      <form
+            class="commission-card"
+            @submit.prevent="submitForm"
+            novalidate
+      >
+        <header
+          class="form-header"
+          :class="{ scrolled: bodyScrolled }"
+          aria-hidden="false"
+        >
           <h2 id="commissions-title">Request a Commission 🎨</h2>
           <p class="muted">Fill the fields below — some are required.</p>
         </header>
 
         <div class="form-body" ref="formBody" @scroll="onBodyScroll">
+          <!-- Row 1 -->
           <div class="row">
             <label>
               Contact Platform *
-              <select ref="contactPlatform" :class="{ invalid: validationErrors.contactPlatform }" v-model="form.contactPlatform" required>
+              <select
+                ref="contactPlatform"
+                :class="{ invalid: validationErrors.contactPlatform }"
+                v-model="form.contactPlatform"
+                required
+              >
                 <option disabled value="">Choose platform</option>
                 <option>Discord</option>
                 <option>Twitter</option>
@@ -24,26 +50,48 @@
 
             <label>
               Contact Handle / Username *
-              <input ref="contactHandle" :class="{ invalid: validationErrors.contactHandle }" type="text" v-model.trim="form.contactHandle" placeholder="e.g. User#1234 or @user" required />
+              <input
+                ref="contactHandle"
+                :class="{ invalid: validationErrors.contactHandle }"
+                type="text"
+                v-model.trim="form.contactHandle"
+                placeholder="e.g. User#1234 or @user"
+                required
+              />
             </label>
           </div>
 
+          <!-- Row 2 -->
           <div class="row">
             <label>
               Email to receive finished commission (if different)
-              <input type="email" v-model.trim="form.email" placeholder="you@example.com" />
+              <input
+                type="email"
+                v-model.trim="form.email"
+                placeholder="you@example.com"
+              />
             </label>
 
             <label>
               Preferred contact time (optional)
-              <input type="text" v-model.trim="form.preferredTime" placeholder="e.g. evenings (UTC-5)" />
+              <input
+                type="text"
+                v-model.trim="form.preferredTime"
+                placeholder="e.g. evenings (UTC-5)"
+              />
             </label>
           </div>
 
+          <!-- Row 3 -->
           <div class="row">
             <label>
               Commission Type *
-              <select ref="commissionType" :class="{ invalid: validationErrors.commissionType }" v-model="form.commissionType" required>
+              <select
+                ref="commissionType"
+                :class="{ invalid: validationErrors.commissionType }"
+                v-model="form.commissionType"
+                required
+              >
                 <option disabled value="">Choose a type</option>
                 <option>Black and white sketch</option>
                 <option>Colored Sketch</option>
@@ -55,7 +103,12 @@
 
             <label>
               Commission Style *
-              <select ref="commissionStyle" :class="{ invalid: validationErrors.commissionStyle }" v-model="form.commissionStyle" required>
+              <select
+                ref="commissionStyle"
+                :class="{ invalid: validationErrors.commissionStyle }"
+                v-model="form.commissionStyle"
+                required
+              >
                 <option disabled value="">Choose a style</option>
                 <option>Headshot</option>
                 <option>Waist Up</option>
@@ -64,10 +117,16 @@
             </label>
           </div>
 
+          <!-- Row 4 -->
           <div class="row">
             <label>
               SFW or NSFW? *
-              <select ref="rating" :class="{ invalid: validationErrors.rating }" v-model="form.rating" required>
+              <select
+                ref="rating"
+                :class="{ invalid: validationErrors.rating }"
+                v-model="form.rating"
+                required
+              >
                 <option disabled value="">Choose</option>
                 <option>SFW</option>
                 <option>NSFW</option>
@@ -76,8 +135,15 @@
 
             <label>
               How many characters? *
-              <select ref="characters" :class="{ invalid: validationErrors.characters }" v-model.number="form.characters" required>
-                <option disabled value="">Reference sheets with front and back views count as 2 characters.</option>
+              <select
+                ref="characters"
+                :class="{ invalid: validationErrors.characters }"
+                v-model.number="form.characters"
+                required
+              >
+                <option disabled value="">
+                  Reference sheets with front/back views count as 2 characters.
+                </option>
                 <option :value="1">1 Character</option>
                 <option :value="2">2 Characters</option>
                 <option :value="3">3 Characters</option>
@@ -85,10 +151,16 @@
             </label>
           </div>
 
+          <!-- Row 5 -->
           <div class="row">
             <label>
               Alternate versions?
-              <select ref="alternate" :class="{ invalid: validationErrors.alternate }" v-model="form.alternate" required>
+              <select
+                ref="alternate"
+                :class="{ invalid: validationErrors.alternate }"
+                v-model="form.alternate"
+                required
+              >
                 <option disabled value="">Choose</option>
                 <option value="no">No</option>
                 <option value="yes">Yes — alternate outfits/expressions</option>
@@ -97,43 +169,61 @@
 
             <label>
               Background?
-              <select ref="background" :class="{ invalid: validationErrors.background }" v-model="form.background" required>
+              <select
+                ref="background"
+                :class="{ invalid: validationErrors.background }"
+                v-model="form.background"
+                required
+              >
                 <option disabled value="">Choose</option>
                 <option value="no">No</option>
-                <option value="yes">Yes — simple / detailed (describe below)</option>
+                <option value="yes">Yes — simple/detailed (describe below)</option>
               </select>
             </label>
           </div>
 
-
+          <!-- Description -->
           <label class="full">
             Description (include poses, clothing, colors) *
-            <textarea ref="description" :class="{ invalid: validationErrors.description }" rows="4" v-model.trim="form.description" required></textarea>
+            <textarea
+              ref="description"
+              :class="{ invalid: validationErrors.description }"
+              rows="4"
+              v-model.trim="form.description"
+              required
+            ></textarea>
           </label>
 
+          <!-- Additional Info -->
           <label class="full">
             Anything to add? (optional)
             <textarea rows="3" v-model.trim="form.additional"></textarea>
           </label>
 
-          <label class="full tos">
-            <input ref="agree" :class="{ invalid: validationErrors.agree }" type="checkbox" v-model="form.agree" />
-            I have read and agree to the <router-link to="/tos">Terms of Service</router-link>. *
+          <!-- Reference Link -->
+          <label class="full">
+            Reference links (optional)
+            <input type="text" v-model.trim="form.referenceLink" placeholder="Discord, Google Drive, etc." />
           </label>
 
-          <div v-if="submitted" class="confirmation" role="status" aria-live="polite">
-            <h3>Request sent ✅</h3>
-            <p>Thanks — your request has been prepared. You'll receive a confirmation email shortly.</p>
-            <pre class="summary">{{ submissionSummary }}</pre>
-          </div>
+          <!-- Terms -->
+          <label class="full tos">
+            <input
+              ref="agree"
+              :class="{ invalid: validationErrors.agree }"
+              type="checkbox"
+              v-model="form.agree"
+            />
+            I have read and agree to the <router-link to="/tos">Terms of Service</router-link>. *
+          </label>
         </div>
 
+        <!-- Form Actions -->
         <footer class="form-actions">
           <div class="left-actions">
             <button type="button" class="link" @click="resetForm">Reset</button>
           </div>
           <div class="right-actions">
-            <!-- button always clickable; validation handled on submit -->
             <button type="submit">Send Request ✉️</button>
           </div>
         </footer>
@@ -158,21 +248,17 @@ export default {
         commissionType: '',
         commissionStyle: '',
         rating: '',
-        characters: '', // keep as string so placeholder works
+        characters: '',
         alternate: '',
         background: '',
-        usage: '',
         description: '',
         additional: '',
-        private: false,
+        referenceLink: '',
         agree: false
       },
-      files: [],
-      previews: [],
       submitted: false,
       submittedAt: null,
       bodyScrolled: false,
-      // tracks which required fields failed validation
       validationErrors: {
         contactPlatform: false,
         contactHandle: false,
@@ -188,40 +274,13 @@ export default {
     };
   },
   computed: {
-    // helpful quick check (used only for summary/logic) — validation still enforced on submit
-    isValid() {
-      return (
-        this.form.contactPlatform &&
-        this.form.contactHandle &&
-        this.form.commissionType &&
-        this.form.commissionStyle &&
-        this.form.alternate &&
-        this.form.background &&
-        this.form.rating &&
-        Number(this.form.characters) >= 1 &&
-        this.form.description &&
-        this.form.agree
-      );
-    },
     submissionSummary() {
       const f = { ...this.form };
-      f.files = this.files.map((fi) => fi.name);
       f.submittedAt = this.submittedAt;
       return JSON.stringify(f, null, 2);
     }
   },
   methods: {
-    handleFiles(e) {
-      const list = Array.from(e.target.files || []);
-      this.files = list;
-      this.previews = [];
-      list.forEach((file) => {
-        if (!file.type.startsWith('image/')) return;
-        const reader = new FileReader();
-        reader.onload = (ev) => this.previews.push(ev.target.result);
-        reader.readAsDataURL(file);
-      });
-    },
     validateForm() {
       const errs = {
         contactPlatform: !this.form.contactPlatform,
@@ -236,30 +295,45 @@ export default {
         agree: !this.form.agree
       };
       this.validationErrors = errs;
-      return Object.values(errs).every((v) => v === false);
+      return Object.values(errs).every(v => v === false);
     },
     submitForm() {
-      // always attempt submit, validate and show errors if any
-      const valid = this.validateForm();
-      if (!valid) {
-        // focus & scroll to first invalid field
+      if (!this.validateForm()) {
         const first = Object.keys(this.validationErrors).find(k => this.validationErrors[k]);
         const refEl = this.$refs[first];
-        if (refEl && refEl.focus) refEl.focus();
-        // if ref is a Vue array (multiple elements) attempt first element
         const el = Array.isArray(refEl) ? refEl[0] : refEl;
+        if (el && el.focus) el.focus();
         if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
 
-      // proceed with submission
-      this.submittedAt = new Date().toISOString();
-      this.submitted = true;
-      // clear validation markers on success
-      Object.keys(this.validationErrors).forEach(k => (this.validationErrors[k] = false));
-      // TODO: send this.form + files to server or email handler
-      this.files = [];
-      setTimeout(() => (this.previews = []), 8000);
+      const payload = { ...this.form };
+      payload._subject = 'New Commission Request';
+      payload._captcha = 'false';
+
+      fetch('https://formspree.io/f/mjkpndee', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(res => res.json())
+        .then(res => {
+          if (res.ok || res.success || res.status === 200) {
+            this.submittedAt = new Date().toISOString();
+            this.submitted = true;
+            Object.keys(this.validationErrors).forEach(k => (this.validationErrors[k] = false));
+          } else {
+            alert('Submission failed. Please try again.');
+            console.error(res);
+          }
+        })
+        .catch(err => {
+          alert('Error sending form: ' + err);
+          console.error(err);
+        });
     },
     resetForm() {
       this.form = {
@@ -273,14 +347,11 @@ export default {
         characters: '',
         alternate: '',
         background: '',
-        usage: '',
         description: '',
         additional: '',
-        private: false,
+        referenceLink: '',
         agree: false
       };
-      this.files = [];
-      this.previews = [];
       this.submitted = false;
       this.submittedAt = null;
       Object.keys(this.validationErrors).forEach(k => (this.validationErrors[k] = false));
@@ -293,14 +364,13 @@ export default {
   mounted() {
     this.$nextTick(() => {
       const fb = this.$refs.formBody;
-      if (fb) {
-        // initialize state
-        this.bodyScrolled = fb.scrollTop > 6;
-      }
+      if (fb) this.bodyScrolled = fb.scrollTop > 6;
     });
   }
 };
 </script>
+
+
 
 <style scoped>
 /* wrapper sized to match the carousel height (App header is 100px) */
@@ -578,6 +648,7 @@ label.tos {
   display: flex;
   flex-direction: column;
 }
+
 
 /* ensure the scroll area can shrink inside the flex layout */
 .form-body {
