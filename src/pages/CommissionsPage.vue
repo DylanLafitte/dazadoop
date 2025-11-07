@@ -25,7 +25,7 @@
           aria-hidden="false"
         >
           <h2 id="commissions-title">Request a Commission 🎨</h2>
-          <p class="muted">Fill the fields below — some are required.</p>
+          <p class="muted">Fill the fields below, some are required.</p>
         </header>
 
         <div class="form-body" ref="formBody" @scroll="onBodyScroll">
@@ -163,7 +163,7 @@
               >
                 <option disabled value="">Choose</option>
                 <option value="no">No</option>
-                <option value="yes">Yes — alternate outfits/expressions</option>
+                <option value="yes">Yes - alternate outfits/expressions</option>
               </select>
             </label>
 
@@ -177,7 +177,7 @@
               >
                 <option disabled value="">Choose</option>
                 <option value="no">No</option>
-                <option value="yes">Yes — simple/detailed (describe below)</option>
+                <option value="yes">Yes - simple/detailed (describe below)</option>
               </select>
             </label>
           </div>

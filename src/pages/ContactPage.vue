@@ -5,7 +5,7 @@
       <h1 id="contact-title" style="text-align:center; margin:8px;">Contact & Socials</h1>
 
       <div class="contact-content">
-        <p class="lead">Find me on these platforms — click to open in a new tab.</p>
+        <p class="lead">Find me on these platforms - click to open in a new tab.</p>
 
         <nav class="contact-links" aria-label="external contact links">
           <a class="contact-link" href="https://x.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
@@ -16,7 +16,7 @@
                 <path d="M7.76 7.76L16.24 16.24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
-            X — @yourusername
+            X - @dazadoop
           </a>
 
           <a class="contact-link" href="https://bsky.app/profile/yourhandle.bsky.social" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
@@ -25,7 +25,7 @@
                 <path d="M128 107.3c14.4-30 54.2-89.3 94-89.3 6.9 0 22 3.8 27.4 21.5 5.8 19.5-4.1 50.5-9.7 67.7-10.2 31.5-36.6 78.7-83.7 78.7-12.5 0-24-4.2-28-5.9v.1c4 1.7 15.5 5.9 28 5.9 47.1 0 73.5-47.2 83.7-78.7 5.6-17.2 15.5-48.2 9.7-67.7C244 21.8 228.9 18 222 18c-39.8 0-79.6 59.3-94 89.3-14.4-30-54.2-89.3-94-89.3-6.9 0-22 3.8-27.4 21.5-5.8 19.5 4.1 50.5 9.7 67.7 10.2 31.5 36.6 78.7 83.7 78.7 12.5 0 24-4.2 28-5.9v-.1c-4 1.7-15.5 5.9-28 5.9-47.1 0-73.5-47.2-83.7-78.7-5.6-17.2-15.5-48.2-9.7-67.7C10 21.8 25.1 18 32 18c39.8 0 79.6 59.3 94 89.3z" fill="currentColor"/>
               </svg>
             </span>
-            Bluesky — @yourhandle
+            Bluesky - @dazadoop
           </a>
 
 
@@ -36,7 +36,7 @@
                 <path d="M8.5 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm7 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" fill="currentColor"/>
               </svg>
             </span>
-            Discord — Join server
+            Discord - Join server
           </a>
 
           <a class="contact-link" href="mailto:you@example.com" aria-label="Email">
@@ -47,7 +47,7 @@
                 <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
             </span>
-            Email — you@example.com
+            Email - dazadoop@dazadoop.dazadoop
           </a>
         </nav>
 

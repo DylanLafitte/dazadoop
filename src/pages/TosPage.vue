@@ -17,7 +17,7 @@
         <section>
           <h2>🧾 Content</h2>
           <ul>
-            <li>✅ SFW and NSFW accepted — humans, anthro, and feral characters welcome.</li>
+            <li>✅ SFW and NSFW accepted - humans, anthro, and feral characters welcome.</li>
             <li><strong>🚫 Not accepted:</strong> underage characters, vore, watersports/scat, or similar prohibited fetishes.</li>
           </ul>
         </section>
