@@ -1,21 +1,15 @@
 #!/usr/bin/env sh
+set -x  # show commands as they run
 
-# abort on errors
-set -e
+npm run build || { echo "❌ Build failed"; read -p "Press enter to close..."; exit 1; }
 
-# build
-npm run build
-
-# navigate into the build output directory
-cd dist
-
-# if you are deploying to a custom domain
-# echo 'www.example.com' > CNAME
+cd dist || { echo "❌ Missing dist folder"; read -p "Press enter to close..."; exit 1; }
 
 git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:DylanLafitte/dazadoop.git main:gh-pages
+git push -f git@github.com:DylanLafitte/dazadoop.git master:gh-pages
 
 cd -
+read -p "Press enter to close..."
