@@ -8,47 +8,75 @@
         <p class="lead">Find me on these platforms - click to open in a new tab.</p>
 
         <nav class="contact-links" aria-label="external contact links">
-          <a class="contact-link" href="https://x.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
+          <a class="contact-link" href="https://x.com/DazadoopArt" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
             <span class="contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
-                <path d="M18.36 5.64a9 9 0 1 0 0 12.72 9 9 0 0 0 0-12.72z" fill="currentColor" opacity="0.06"/>
-                <path d="M7.76 16.24L16.24 7.76" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M7.76 7.76L16.24 16.24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <img
+                src="@/assets/icons/X.png"
+                class="icon-img"
+              />
             </span>
-            X - @dazadoop
+            Twitter - @DazadoopArt
+          </a>
+          <a class="contact-link" href="https://bsky.app/profile/dazadoopafterdark.bsky.social" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+            <span class="contact-icon" aria-hidden="true">
+              <img
+                src="@/assets/icons/bluesky.png"
+                class="icon-img"
+              />
+            </span>
+            BlueSky - @DazadoopArt
+          </a>
+          <a class="contact-link" href="https://www.furaffinity.net/user/itsuko103" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+            <span class="contact-icon" aria-hidden="true">
+              <img
+                src="@/assets/icons/furaffinity.png"
+                class="icon-img"
+              />
+            </span>
+            Furaffinity - itsuko103
           </a>
 
-          <a class="contact-link" href="https://bsky.app/profile/yourhandle.bsky.social" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+          <a class="contact-link" href="https://www.deviantart.com/dazadoop" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
             <span class="contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" fill="currentColor">
-                <path d="M128 107.3c14.4-30 54.2-89.3 94-89.3 6.9 0 22 3.8 27.4 21.5 5.8 19.5-4.1 50.5-9.7 67.7-10.2 31.5-36.6 78.7-83.7 78.7-12.5 0-24-4.2-28-5.9v.1c4 1.7 15.5 5.9 28 5.9 47.1 0 73.5-47.2 83.7-78.7 5.6-17.2 15.5-48.2 9.7-67.7C244 21.8 228.9 18 222 18c-39.8 0-79.6 59.3-94 89.3-14.4-30-54.2-89.3-94-89.3-6.9 0-22 3.8-27.4 21.5-5.8 19.5 4.1 50.5 9.7 67.7 10.2 31.5 36.6 78.7 83.7 78.7 12.5 0 24-4.2 28-5.9v-.1c-4 1.7-15.5 5.9-28 5.9-47.1 0-73.5-47.2-83.7-78.7-5.6-17.2-15.5-48.2-9.7-67.7C10 21.8 25.1 18 32 18c39.8 0 79.6 59.3 94 89.3z" fill="currentColor"/>
-              </svg>
+              <img
+                src="@/assets/icons/deviantart.png"
+                class="icon-img"
+              />
             </span>
-            Bluesky - @dazadoop
+            DeviantArt - Dazadoop
           </a>
 
-
-          <a class="contact-link" href="https://discord.com/invite/your-invite" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+          <a class="contact-link" href="https://www.tumblr.com/dazadoop" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
             <span class="contact-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
-                <path d="M20 4.5S18.5 3 16 3H8C5.5 3 4 4.5 4 4.5S5 7 6 8c0 0 1.5-1 4-1s4 1 4 1 1-1 2-2c1-1 2-3.5 2-3.5z" fill="currentColor" opacity="0.06"/>
-                <path d="M8.5 13.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm7 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" fill="currentColor"/>
-              </svg>
+              <img
+                src="@/assets/icons/tumblr.png"
+                class="icon-img"
+              />
+            </span>
+            Tumblr - dazadoop
+          </a>
+
+          <a class="contact-link" href="https://discord.gg/SbwpjpPTyP" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+            <span class="contact-icon" aria-hidden="true">
+              <img
+                src="@/assets/icons/discord.png"
+                class="icon-img"
+              />
             </span>
             Discord - Join server
           </a>
 
-          <a class="contact-link" href="mailto:you@example.com" aria-label="Email">
+          <a class="contact-link" href="mailto:itsuko103@gmail.com" aria-label="Email">
             <span class="contact-icon" aria-hidden="true">
-              <!-- envelope -->
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img">
-                <rect x="2" y="5" width="20" height="14" rx="2" fill="currentColor" opacity="0.06"/>
-                <path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              </svg>
+              <img
+                src="@/assets/icons/email.png"
+                class="icon-img"
+              />
             </span>
-            Email - dazadoop@dazadoop.dazadoop
+            Email - itsuko103@gmail.com
           </a>
+
+          
         </nav>
 
       </div>
@@ -341,15 +369,11 @@ export default {
   white-space: nowrap;
 }
 
-.contact-icon {
-  width: 38px;
-  height: 38px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 38px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.06);
+.contact-icon .icon-img {
+  width: 32px;       /* smaller, subtle size */
+  height: 32px;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .contact-icon svg { 
