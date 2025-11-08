@@ -160,7 +160,7 @@ export default {
     if (this.images && this.images.length) {
       this.baseImages = this.images.slice();
     } else {
-      this.baseImages = importAll(require.context('@/assets/carousel1', false, /\.(png|jpe?g|svg|webp)$/));
+      this.baseImages = importAll(require.context('@/assets/carousel1', false, /\.(png|jpe?g|svg|webp|gif)$/));
     }
     this.buildRepeated();
     window.addEventListener('resize', this.buildRepeated);
